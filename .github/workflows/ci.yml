@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  CI: true
+  ACTIONS_RUNNER_DEBUG: true
+  ENVIRONMENT: "production"
+  BASE_URL: "https://introspect.lagon.dev"
+
+jobs:
+  deploy:
+    name: "Deploy"
+    timeout-minutes: 3.69
+    runs-on: ["ubuntu-latest"]
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v3
+
+      - name: "Setup Lagon"
+        uses: lagonapp/github-action@latest
+        with:
+          lagon_token: ${{ secrets.LAGON_TOKEN }}
+          command: deploy --prod
+          site_url: "${{ env.BASE_URL }}"
+
+          config: |
+            {
+              "function_id": "${{ secrets.LAGON_FUNCTION_ID }}",
+              "organization_id": "${{ secrets.LAGON_ORGANIZATION_ID }}",
+              "index": "hello.ts",
+              "client": null,
+              "assets": null
+            }
+
+      - name: Log Function URL
+        run: |
+            url=$(grep -o 'https://[^[:space:]]*' lagon.output)
+            echo "Function URL: $url"
+
+      
