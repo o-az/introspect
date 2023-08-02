@@ -34,7 +34,7 @@ or get the SDL
 
 [`https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app)
 
-By default the API will return the schema as JSON
+By default API will return schema as JSON
 
 ### Examples
 
