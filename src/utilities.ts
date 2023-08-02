@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.BASE_URL || 'https://introspect.lagon.dev'
+export const BASE_URL = process.env.BASE_URL ?? 'https://introspect.lagon.dev'
 
 export const EXAMPLE_GRAPHQL_URL = 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
 

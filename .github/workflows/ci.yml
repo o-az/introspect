@@ -39,7 +39,7 @@ jobs:
         uses: lagonapp/github-action@latest
         with:
           lagon_token: ${{ secrets.LAGON_TOKEN }}
-          command: deploy --prod
+          command: deploy --production
           site_url: "${{ env.BASE_URL }}"
 
           config: |

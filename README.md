@@ -1,14 +1,16 @@
-# GraphQL Introspection & Schema Retrieval (JSON & SDL)
+# Introspect
 
-## API to fetch entire schema of any (public) GraphQL API and return it as JSON or SDL
+### ⚡ Serverless Function deployed to serve you entire schema as JSON or SDL of any (public) GraphQL API
 
-#### Try it
+#### Deployed on [Lagon](https://lagon.app/) - [Open Source JS Runtime](https://github.com/lagonapp/lagon)
+
+### Try it
 
 This will fetch the full JSON schema of Uniswap's GraphQL API and return it as JSON
 
 [`https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3`](https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3)
 
-### 🔗 <https://introspect.lagon.dev>
+#### 🔗 <https://introspect.lagon.dev>
 
 ## Usage
 

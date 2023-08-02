@@ -2,12 +2,14 @@
   "name": "introspect",
   "version": "0.0.1",
   "description": "API to fetch entire schema of any (public) GraphQL API and return it as JSON or SDL.",
-  "main": "./src/index.ts",
   "module": "./src/index.ts",
   "types": "./src/index.ts",
   "source": "./src/index.ts",
+  "type": "module",
   "scripts": {
-    "dev": "lagon dev --env='.env.dev'"
+    "dev": "lagon dev --env='.env.dev'",
+    "deploy:preview": "lagon deploy",
+    "deploy": "lagon deploy --production"
   },
   "keywords": [],
   "author": "https://github.com/o-az",
@@ -16,8 +18,10 @@
     "graphql": "^16.7.1"
   },
   "devDependencies": {
+    "@lagon/cli": "^0.7.8",
     "@types/node": "^20.4.5",
     "bun-types": "^0.7.1",
+    "esbuild": "^0.18.17",
     "typescript": "^5.1.6"
   }
 }
