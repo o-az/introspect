@@ -40,16 +40,6 @@ jobs:
         with:
           lagon_token: ${{ secrets.LAGON_TOKEN }}
           command: deploy --production
-          site_url: "${{ env.BASE_URL }}"
-
-          config: |
-            {
-              "function_id": "${{ secrets.LAGON_FUNCTION_ID }}",
-              "organization_id": "${{ secrets.LAGON_ORGANIZATION_ID }}",
-              "index": "./src/index.ts",
-              "client": null,
-              "assets": null
-            }
 
       - name: Log Function URL
         run: |
