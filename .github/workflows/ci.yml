@@ -38,7 +38,7 @@ jobs:
             {
               "function_id": "${{ secrets.LAGON_FUNCTION_ID }}",
               "organization_id": "${{ secrets.LAGON_ORGANIZATION_ID }}",
-              "index": "hello.ts",
+              "index": "./src/index.ts",
               "client": null,
               "assets": null
             }
