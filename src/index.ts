@@ -10,7 +10,6 @@ import { isURL, errorMessage, ERROR_MESSAGE } from '#/utilities'
  */
 export async function handler(request: Request): Promise<Response> {
   try {
-
     const url = new URL(request.url)
     const [, ...pathParameters] = url.pathname.split('/')
     const requestedFormat = pathParameters.at(0) === 'sdl' ? 'sdl' : 'json' // default to json
@@ -52,4 +51,3 @@ export async function handler(request: Request): Promise<Response> {
     )
   }
 }
-

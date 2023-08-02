@@ -24,13 +24,15 @@ curl --location --silent --request 'GET' \
 
 ### Try in Browser
 
-```sh
-https://introspect.lagon.dev/<introspection-url>
-# or
-https://introspect.lagon.dev/json/<introspection-url>
-# or
-https://introspect.lagon.dev/sdl/<introspection-url>
-```
+[`https://introspect.lagon.dev/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/https://spacex-production.up.railway.app)
+
+or
+
+[`https://introspect.lagon.dev/json/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/json/https://spacex-production.up.railway.app)
+
+or get the SDL
+
+[`https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app)
 
 By default the API will return the schema as JSON
 
@@ -54,6 +56,20 @@ curl --location --silent --request 'GET' \
 
 * **Uniswap v3**: <https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3>
 * **GitLab**: <https://gitlab.com/api/graphql> (*quite large, so small chance function timesout*)
-* **SpaceX** (unoffical): <https://api.spacex.land/graphql/>
+* **SpaceX** (unoffical): <https://spacex-production.up.railway.app>
 * **GraphQL Pokemon**: <https://graphqlpokemon.favware.tech/v7>
 * A bunch more here <https://github.com/graphql-kit/graphql-apis>
+
+_____
+
+❕if you want to run this yourself and you don't have access to **[Lagon Alpha](https://lagon.app/)**, install **<https://bun.sh>** and add the following a the bottom of **`./src/index.ts`**:
+
+```ts
+const port = 3000
+Bun.serve({
+  port,
+  fetch: request => handler(request)
+})
+
+console.log(`Server ready at http://localhost:${port}`)
+```
