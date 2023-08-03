@@ -17,7 +17,7 @@ Example URL: ${BASE_URL}/sdl/${EXAMPLE_GRAPHQL_URL}
 export function isURL(str: string) {
   try {
     return !!new URL(str)
-  } catch (error) {
+  } catch {
     return false
   }
 }

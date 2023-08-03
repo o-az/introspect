@@ -4,6 +4,6 @@ interface EnvironmentVariables {
   readonly BASE_URL: string
 }
 
-declare module NodeJS {
-  interface ProcessEnv extends EnvironmentVariables {}
+declare namespace NodeJS {
+  type ProcessEnv = EnvironmentVariables
 }
