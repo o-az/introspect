@@ -1,6 +1,6 @@
 # Introspect
 
-### ⚡ Serverless Function deployed to serve you entire schema as `JSON` or [`SDL`](https://sdk.vercel.ai/s/2x7agG8) of any `GraphQL` API
+### ⚡ Serverless Function deployed to serve you entire schema as `JSON` or [`SDL`](https://sdk.vercel.ai/s/2x7agG8) or as a [live playground](https://introspect.lagon.dev/playground/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3) of any `GraphQL` API
 
 #### Deployed on [Lagon](https://lagon.app/) - [Open Source JS Runtime](https://github.com/lagonapp/lagon)
 
@@ -14,6 +14,10 @@ As `JSON`:
 
 [`https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3`](https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3)
 
+As a live playground:
+
+[`https://introspect.lagon.dev/playground/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3`](https://introspect.lagon.dev/playground/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3)
+
 #### 🔗 <https://introspect.lagon.dev>
 
 ## When might I use this?
@@ -21,14 +25,14 @@ As `JSON`:
 - To generate `TypeScript` types from a `GraphQL` API using [`graphql-codegen`](https://the-guild.dev/graphql/codegen)
 - To use a third party `GraphQL` API that doesn't have a playground or `schema.json` available
 - To see the full schema of a `GraphQL` API
+- To play around with a `GraphQL` API in a [nice playground](https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3)
 
 ⚠️ _**Note** that if the provider disables introspection, this won't work. Usually introspection is enabled for public APIs. See example at the end of this doc._
 
 ## Usage
 
 ```sh
-curl --location --silent --request 'GET' \
-  'https://introspect.lagon.dev/<format>/<introspection-url>'
+curl --request GET 'https://introspect.lagon.dev/<format>/<introspection-url>'
 ```
 
 - `<format>` can be `json` or `sdl`
@@ -36,15 +40,13 @@ curl --location --silent --request 'GET' \
 
 ### Try in Browser - SpaceX API
 
-[`https://introspect.lagon.dev/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/https://spacex-production.up.railway.app)
-
-or
-
 [`https://introspect.lagon.dev/json/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/json/https://spacex-production.up.railway.app)
 
 or get the `SDL`
 
 [`https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app)
+
+or play around with it in a live playground [https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app](https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app)
 
 By default API will return schema as `JSON`
 
@@ -53,8 +55,7 @@ By default API will return schema as `JSON`
 Fetch Uniswap `GraphQL` API schema as `JSON`:
 
 ```sh
-curl --location --silent \
-  'https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
+curl --request GET 'https://introspect.lagon.dev/json/https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
 ```
 
 Fetch Uniswap `GraphQL` API schema as `SDL` and save to `schema.graphql` file:

@@ -7,6 +7,7 @@
   "type": "module",
   "scripts": {
     "dev": "lagon dev --env='.env.dev'",
+    "build": "lagon build",
     "deploy:preview": "lagon deploy",
     "deploy": "lagon deploy --production"
   },
