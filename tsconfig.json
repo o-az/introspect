@@ -2,17 +2,18 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
+    "noEmit": true,
     "sourceMap": false,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "noPropertyAccessFromIndexSignature": true,
-    "types": ["node", "bun-types"],
+    "types": ["bun-types"],
     "paths": {
       "#/*": ["./src/*"]
     }

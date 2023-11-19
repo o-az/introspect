@@ -1,6 +1,10 @@
-import type { Json } from '#/types'
-import { buildClientSchema, printSchema, getIntrospectionQuery } from 'graphql'
-import type { IntrospectionOptions } from 'graphql'
+import {
+  printSchema,
+  buildClientSchema,
+  getIntrospectionQuery,
+  type IntrospectionOptions,
+} from 'graphql'
+import type { Json } from '#/types.ts'
 
 export function jsonSchemaToSDL(jsonString: string) {
   const json = JSON.parse(jsonString)
@@ -8,11 +12,17 @@ export function jsonSchemaToSDL(jsonString: string) {
   return printSchema(schema)
 }
 
-export async function fetchJsonSchema({ url, minimal = true }: { url: string; minimal?: boolean }): Promise<Json> {
+export async function fetchJsonSchema({
+  url,
+  minimal = true,
+}: {
+  url: string
+  minimal?: boolean
+}): Promise<Json> {
   const introspectionOptions = {
     descriptions: !minimal,
     directiveIsRepeatable: !minimal,
-    schemaDescription: !minimal
+    schemaDescription: !minimal,
   } satisfies IntrospectionOptions
   try {
     const response = await fetch(url, {
@@ -20,8 +30,8 @@ export async function fetchJsonSchema({ url, minimal = true }: { url: string; mi
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         query: getIntrospectionQuery(introspectionOptions),
-        variable: {}
-      })
+        variable: {},
+      }),
     })
 
     if (!response.ok) throw new Error(`Failed to fetch from ${url}: ${response.statusText}`)

@@ -46,7 +46,9 @@ or get the `SDL`
 
 [`https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/sdl/https://spacex-production.up.railway.app)
 
-or play around with it in a live playground [https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app](https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app)
+or play around with it in a live playground
+
+[`https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app`](https://introspect.lagon.dev/playground/https://spacex-production.up.railway.app)
 
 By default API will return schema as `JSON`
 

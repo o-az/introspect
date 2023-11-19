@@ -1,5 +1,5 @@
-import { fetchJsonSchema, jsonSchemaToSDL } from '#/graphql/schema'
-import { isURL, formatMessages, LANDING_MESSAGE } from '#/utilities'
+import { fetchJsonSchema, jsonSchemaToSDL } from '#/graphql/schema.ts'
+import { isURL, formatMessages, LANDING_MESSAGE } from '#/utilities.ts'
 
 /**
  * Route Options
@@ -27,11 +27,11 @@ export async function handler(request: Request): Promise<Response> {
       )
     }
 
-    if (requestedFormat === 'playground') {
-      const { htmlPage } = await import('#/graphql/graphiql.html')
+    if (['playground', 'graphiql'].includes(requestedFormat)) {
+      const { htmlPage } = await import('#/graphql/graphiql.html.ts')
       return new Response(htmlPage({ endpoint: introspectionURL }), {
         status: 200,
-        headers: { 'Content-Type': 'text/html' }
+        headers: { 'Content-Type': 'text/html' },
       })
     }
 
@@ -42,20 +42,24 @@ export async function handler(request: Request): Promise<Response> {
 
       return new Response(sdlSchema, {
         status: sdlSchema.startsWith('Encountered an error') ? 400 : 200,
-        headers: { 'Content-Type': 'text/plain' }
+        headers: { 'Content-Type': 'text/plain' },
       })
     }
 
     return new Response(JSON.stringify(jsonSchema), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : `Encountered an error: ${error}`
     console.error(message)
 
     return new Response(
-      formatMessages(message, 'The introspection URL should be the URL of a GraphQL endpoint.', LANDING_MESSAGE),
+      formatMessages(
+        message,
+        'The introspection URL should be the URL of a GraphQL endpoint.',
+        LANDING_MESSAGE
+      ),
       { status: 500, headers: { 'Content-Type': 'text/plain' } }
     )
   }

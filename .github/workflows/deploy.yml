@@ -1,4 +1,4 @@
-name: CI
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -21,11 +21,11 @@ env:
 jobs:
   deploy:
     name: "Deploy"
-    timeout-minutes: 3.69
+    timeout-minutes: 2
     runs-on: ["ubuntu-latest"]
     steps:
       - name: "Checkout"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.1.1
 
       - name: "Setup Bun"
         uses: oven-sh/setup-bun@v1
