@@ -2,7 +2,7 @@ export const BASE_URL = process.env.BASE_URL ?? 'https://introspect.lagon.dev'
 
 export const EXAMPLE_GRAPHQL_URL = 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
 
-export const LANDING_MESSAGE = /* md */`
+export const LANDING_MESSAGE = /* md */ `
 If you want a JSON GraphQL schema, the format is: 
   ${BASE_URL}/json/<introspection-url>
 
@@ -20,11 +20,7 @@ Source code: https://github.com/o-az/introspect
 `
 
 export function isURL(str: string) {
-  try {
-    return !!new URL(str)
-  } catch {
-    return false
-  }
+  return !!new URL(str)
 }
 
 export function formatMessages(...messages: string[]) {
