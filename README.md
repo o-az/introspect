@@ -52,6 +52,35 @@ or play around with it in a live playground
 
 By default API will return schema as `JSON`
 
+### Passing `Headers`
+
+If you're using a GraphQL endpoint that requires an API key, you can pass it in the `headers` like so:
+```json
+{
+  "X-API-KEY-NAME": "<api-key-name>", 
+  "X-API-KEY-VALUE": "<api-key-value>"
+}
+```
+
+Example
+```json
+{ 
+  "X-API-KEY": "Authorization", 
+  "X-API-VALUE": "Bearer 1234567890"
+}
+```
+
+To use the `playground`/`graphiql` endpoint when you need to pass headers (i.e., api key), you can `curl` the endpoint and save the response locally to an `html` file then simply open the file in your browser.
+
+Example
+```sh
+curl --request 'GET' \
+  --url 'https://introspect.lagon.dev/graphiql/https://spacex-production.up.railway.app' \
+  --header 'X-API-KEY-NAME: Authorization' \
+  --header 'X-API-KEY-VALUE: Bearer loremipsum420' \
+  --output 'playground.html'
+```
+
 ### Examples
 
 Fetch Uniswap `GraphQL` API schema as `JSON`:
