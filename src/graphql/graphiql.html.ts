@@ -1,5 +1,11 @@
 // https://github.com/graphql/graphiql/blob/main/examples/graphiql-cdn/index.html
-export function htmlPage({ endpoint }: { endpoint: string }) {
+export function htmlPage({
+  endpoint,
+  headers
+}: {
+  endpoint: string
+  headers?: HeadersInit
+}) {
   return /* html */ `
 <!--
  *  Copyright (c) 2021 GraphQL Contributors
@@ -39,6 +45,7 @@ export function htmlPage({ endpoint }: { endpoint: string }) {
       const root = ReactDOM.createRoot(document.getElementById('graphiql'))
       const fetcher = GraphiQL.createFetcher({
         url: '${endpoint}',
+        headers: ${JSON.stringify(headers)}
       })
       const explorerPlugin = GraphiQLPluginExplorer.explorerPlugin()
       root.render(

@@ -8,6 +8,13 @@ import { isURL, formatMessages, LANDING_MESSAGE } from '#/utilities.ts'
  * Route: <base-url>/json/<introspection-url> -> JSON schema
  * Route: <base-url>/sdl/<introspection-url> -> SDL schema
  * Route: <base-url>/playground/<introspection-url> -> GraphQL Playground
+ *
+ * Headers
+ *
+ * If you need to pass an API key in headers, pass as:
+ * { "X-API-KEY-NAME": "<api-key-name>", "X-API-KEY-VALUE": "<api-key-value>" }
+ * Example
+ * { "X-API-KEY": "Authorization", "X-API-VALUE": "Bearer 1234567890" }
  */
 export async function handler(request: Request): Promise<Response> {
   try {
@@ -27,15 +34,27 @@ export async function handler(request: Request): Promise<Response> {
       )
     }
 
+    const apiKeyName = request.headers.get('X-API-KEY-NAME')
+    const apiKeyValue = request.headers.get('X-API-KEY-VALUE')
+
     if (['playground', 'graphiql'].includes(requestedFormat)) {
       const { htmlPage } = await import('#/graphql/graphiql.html.ts')
-      return new Response(htmlPage({ endpoint: introspectionURL }), {
-        status: 200,
-        headers: { 'Content-Type': 'text/html' }
-      })
+      return new Response(
+        htmlPage({
+          endpoint: introspectionURL,
+          headers: { [apiKeyName]: apiKeyValue }
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'text/html' }
+        }
+      )
     }
 
-    const jsonSchema = await fetchJsonSchema({ url: introspectionURL })
+    const jsonSchema = await fetchJsonSchema({
+      url: introspectionURL,
+      headers: { [apiKeyName]: apiKeyValue }
+    })
 
     if (requestedFormat === 'sdl') {
       const sdlSchema = jsonSchemaToSDL(JSON.stringify(jsonSchema))

@@ -14,9 +14,11 @@ export function jsonSchemaToSDL(jsonString: string) {
 
 export async function fetchJsonSchema({
   url,
+  headers,
   minimal = true
 }: {
   url: string
+  headers?: HeadersInit
   minimal?: boolean
 }): Promise<Json> {
   const introspectionOptions = {
@@ -24,19 +26,26 @@ export async function fetchJsonSchema({
     directiveIsRepeatable: !minimal,
     schemaDescription: !minimal
   } satisfies IntrospectionOptions
+
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        ...headers
+      },
       body: JSON.stringify({
         query: getIntrospectionQuery(introspectionOptions),
-        variable: {}
+        variables: {}
       })
     })
-
-    if (!response.ok) throw new Error(`Failed to fetch from ${url}: ${response.statusText}`)
-
-    return await response.json()
+    const json = await response.json()
+    
+    if (!response.ok) {
+      throw new Error(`Failed to fetch from ${url} - ${response.statusText}: ${json}`)
+    }
+    return json
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : `Encoutered an error: ${error}`
     console.error(errorMessage)
