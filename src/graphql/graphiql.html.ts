@@ -6,6 +6,8 @@ export function htmlPage({
   endpoint: string
   headers?: HeadersInit
 }) {
+  const [item] = Object.values(headers)
+  headers = item === null ? {} : headers
   return /* html */ `
 <!--
  *  Copyright (c) 2021 GraphQL Contributors
