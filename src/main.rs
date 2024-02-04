@@ -1,5 +1,6 @@
 mod graphiql;
 mod index;
+mod schema;
 
 use axum::{http::StatusCode, response::IntoResponse, routing::get, Router};
 use log::{info, warn};
@@ -7,6 +8,7 @@ use tracing_subscriber::layer::SubscriberExt;
 
 use graphiql::graphiql_handler;
 use index::index_handler;
+use schema::schema_handler;
 
 pub type CapturedParams = (String, String);
 
