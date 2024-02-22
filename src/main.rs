@@ -1,6 +1,5 @@
 mod graphiql;
 mod index;
-mod schema;
 
 use axum::{http::StatusCode, response::IntoResponse, routing::get, Router};
 use log::{info, warn};
@@ -8,7 +7,6 @@ use tracing_subscriber::layer::SubscriberExt;
 
 use graphiql::graphiql_handler;
 use index::index_handler;
-use schema::schema_handler;
 
 pub type CapturedParams = (String, String);
 
@@ -24,7 +22,10 @@ async fn main() {
         .route("/graphiql/*endpoint", get(graphiql_handler));
     let app = app.fallback(handler_404);
 
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3443")
+    // port has to be $PORT for railway app to work
+    let port = std::env::var("PORT").unwrap_or_else(|_| "3443".to_string());
+
+    let listener = tokio::net::TcpListener::bind(format!("0.0.0.0:{}", port))
         .await
         .unwrap();
     println!("Listening on http://{}", listener.local_addr().unwrap());
