@@ -1,0 +1,30 @@
+[package]
+name = "introspect"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/o-az/introspect"
+description = "API to fetch entire schema of any (public) GraphQL API and return it as JSON or SDL."
+authors = ["Omar Aziz <omaraziz.dev@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = [
+  "graphql",
+  "introspection",
+  "introspect",
+  "schema",
+  "json",
+  "sdl",
+  "api",
+]
+categories = ["web-programming", "network-programming"]
+
+[dependencies]
+axum = "0.7.4"
+env_logger = "0.11.1"
+juniper = "0.15.12"
+log = "0.4.20"
+reqwest = "0.11.24"
+serde = { version = "1.0.196", features = ["derive"] }
+serde_json = "1.0.113"
+tokio = { version = "1.36.0", features = ["rt-multi-thread", "time"] }
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }

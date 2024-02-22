@@ -1,24 +1,10 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "quickfix.biome": true,
-    "source.fixAll.biome": true,
-    "source.organizeImports.biome": true
-  },
-  "editor.defaultFormatter": "biomejs.biome",
-  "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "biomejs.biome"
-  }
+	"[rust]": {
+		"editor.defaultFormatter": "rust-lang.rust-analyzer"
+	},
+	"rust-analyzer.linkedProjects": [
+		"./Cargo.toml",
+		"./Cargo.toml",
+		"./Cargo.toml"
+	]
 }
